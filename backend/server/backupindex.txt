@@ -1,0 +1,118 @@
+// server/index.js
+
+const express = require('express');
+const http = require('http');
+const socketIo = require('socket.io');
+const cors = require('cors');
+const dotenv = require('dotenv');
+const bodyParser = require('body-parser');
+const fs = require('fs');
+const path = require('path');
+
+dotenv.config();
+
+const userRoutes = require('./routes/users');
+const streamRoutes = require('./routes/streams');
+
+const app = express();
+const server = http.createServer(app);
+const io = socketIo(server, {
+  cors: {
+    origin: '*', // Update with your frontend URL in production
+    methods: ['GET', 'POST'],
+  },
+});
+
+// Middleware
+app.use(cors());
+app.use(bodyParser.json());
+
+// Define Routes
+app.use('/api/users', userRoutes);
+app.use('/api/streams', streamRoutes);
+
+// Export io for use in controllers
+module.exports = { app, server, io };
+
+// Track viewers per stream
+const streamsViewers = {}; // { streamId: { viewerId: socketId } }
+
+io.on('connection', (socket) => {
+  console.log('New client connected:', socket.id);
+
+  // Join Stream Room
+  socket.on('joinStream', ({ streamId, userId }) => {
+    socket.join(streamId);
+    console.log(`User ${userId} joined stream ${streamId}`);
+
+    // Initialize viewers mapping if not present
+    if (!streamsViewers[streamId]) {
+      streamsViewers[streamId] = {};
+    }
+
+    // Add viewer to the mapping
+    streamsViewers[streamId][userId] = socket.id;
+
+    // Notify streamer about new viewer
+    io.to(streamId).emit('updateViewers', { viewerId: userId, viewerSocketId: socket.id });
+  });
+
+  // Handle chat messages
+  socket.on('chatMessage', ({ streamId, message, username }) => {
+    // Save chat to chats.json
+    const chatDataPath = path.join(__dirname, 'data', 'chats.json');
+    const chatData = JSON.parse(fs.readFileSync(chatDataPath, 'utf-8'));
+    const newChat = {
+      streamId,
+      username,
+      message,
+      timestamp: new Date(),
+    };
+    chatData.chats.push(newChat);
+    fs.writeFileSync(chatDataPath, JSON.stringify(chatData, null, 2));
+
+    io.to(streamId).emit('newChatMessage', newChat);
+  });
+
+  // WebRTC Signaling
+  socket.on('webrtc-offer', ({ streamId, offer, toSocketId }) => {
+    console.log(`Received offer from ${socket.id} to ${toSocketId}`);
+    io.to(toSocketId).emit('webrtc-offer', { offer, fromSocketId: socket.id });
+  });
+
+  socket.on('webrtc-answer', ({ answer, toSocketId }) => {
+    console.log(`Received answer from ${socket.id} to ${toSocketId}`);
+    io.to(toSocketId).emit('webrtc-answer', { answer, fromSocketId: socket.id });
+  });
+
+  socket.on('webrtc-ice-candidate', ({ candidate, toSocketId }) => {
+    console.log(`Received ICE candidate from ${socket.id} to ${toSocketId}`);
+    io.to(toSocketId).emit('webrtc-ice-candidate', { candidate, fromSocketId: socket.id });
+  });
+  //handle get viewrs
+  socket.on('getViewers', ({ streamId }, callback) => {
+    if (streamsViewers[streamId]) {
+      const viewerIds = Object.keys(streamsViewers[streamId]);
+      callback({ viewers: viewerIds });
+    } else {
+      callback({ viewers: [] });
+    }
+  });
+  // Handle disconnection
+  socket.on('disconnect', () => {
+    console.log('Client disconnected:', socket.id);
+
+    // Iterate through all streams to find if this socket was a viewer
+    for (const streamId in streamsViewers) {
+      for (const viewerId in streamsViewers[streamId]) {
+        if (streamsViewers[streamId][viewerId] === socket.id) {
+          // Remove viewer from the mapping
+          delete streamsViewers[streamId][viewerId];
+
+          // Notify others in the stream that a viewer has left
+          io.to(streamId).emit('viewerLeft', { viewerId, socketId: socket.id });
+        }
+      }
+    }
+  });
+});

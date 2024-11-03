@@ -1,0 +1,321 @@
+/* client/src/components/Stream/Stream.css */
+/* client/src/components/Stream/Stream.css */
+
+.view-stream-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+  }
+  
+  .end-stream-button {
+    padding: 10px 20px;
+    background-color: #dc3545; /* Bootstrap Danger color */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-right: 10px;
+  }
+  
+  .end-stream-button:hover {
+    background-color: #c82333;
+  }
+  
+  .share-screen-button {
+    padding: 10px 20px;
+    background-color: #007bff; /* Bootstrap Primary color */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .share-screen-button:hover {
+    background-color: #0069d9;
+  }
+  
+  .view-users-button {
+    padding: 5px 10px;
+    background-color: #17a2b8; /* Bootstrap Info color */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: 10px;
+  }
+  
+  .view-users-button:hover {
+    background-color: #138496;
+  }
+  
+  .viewers-modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    border: 2px solid #343a40;
+    padding: 20px;
+    border-radius: 10px;
+    z-index: 1000;
+    max-height: 80vh;
+    overflow-y: auto;
+    width: 300px;
+  }
+  
+  .viewers-modal h4 {
+    margin-top: 0;
+  }
+  
+  .viewers-modal ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .viewers-modal li {
+    margin-bottom: 5px;
+  }
+  
+  .viewers-modal button {
+    margin-top: 10px;
+    padding: 5px 10px;
+    background-color: #6c757d; /* Bootstrap Secondary color */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .viewers-modal button:hover {
+    background-color: #5a6268;
+  }
+  
+  .local-stream-video {
+    width: 300px;
+    height: 200px;
+    border: 2px solid #28a745; /* Bootstrap Success color */
+    border-radius: 5px;
+    margin-bottom: 10px;
+  }
+  
+  .screen-share {
+    border: 2px solid #ffc107; /* Bootstrap Warning color */
+  }
+  
+  .stream-video {
+    width: 100%;
+    max-width: 800px;
+    height: auto;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 20px;
+  }
+  
+  .viewers-info {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  .viewers-info h3 {
+    margin: 0;
+  }
+  
+  .viewers-info button {
+    margin-left: 10px;
+  }
+  
+.stream-container, .view-stream-container, .stream-list-container {
+    width: 80%;
+    margin: 20px auto;
+    text-align: center;
+  }
+  
+  .stream-form, .stream-list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .stream-input {
+    width: 60%;
+    padding: 10px;
+    margin-bottom: 15px;
+    font-size: 16px;
+  }
+  
+  .stream-button {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #17a2b8;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .stream-button:hover {
+    background-color: #138496;
+  }
+  
+  .stream-list {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .stream-item {
+    margin-bottom: 10px;
+  }
+  
+  .stream-link {
+    text-decoration: none;
+    color: #007bff;
+    font-size: 18px;
+  }
+  
+  .stream-link:hover {
+    text-decoration: underline;
+  }
+  
+  .stream-video {
+    width: 100%;
+    max-width: 800px;
+    height: auto;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .viewers-info {
+    margin-top: 10px;
+  }
+  /* client/src/components/Stream/Stream.css */
+
+.viwers-modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    border: 2px solid #343a40;
+    padding: 20px;
+    border-radius: 10px;
+    z-index: 1000;
+    max-height: 80vh;
+    overflow-y: auto;
+    width: 300px;
+  }
+  
+  .viewers-modal h4 {
+    margin-top: 0;
+  }
+  
+  .viewers-modal ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .viewers-modal li {
+    margin-bottom: 5px;
+  }
+  
+  .viewers-modal button {
+    margin-top: 10px;
+    padding: 5px 10px;
+    background-color: #6c757d; /* Bootstrap Secondary color */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .viewers-modal button:hover {
+    background-color: #5a6268;
+  }
+  
+.stream-list-container {
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.stream-list-container h2 {
+  margin-bottom: 24px;
+  color: #333;
+}
+
+.stream-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 20px;
+  padding: 10px;
+}
+
+.stream-card {
+  background: #fff;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease-in-out;
+  text-decoration: none;
+  color: inherit;
+}
+
+.stream-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.stream-thumbnail {
+  position: relative;
+  width: 100%;
+  padding-top: 56.25%; /* 16:9 aspect ratio */
+  background: #f0f0f0;
+}
+
+.stream-overlay {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+}
+
+.status-indicator {
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.status-indicator.live {
+  background: #ff4444;
+  color: white;
+}
+
+.status-indicator.offline {
+  background: #666;
+  color: white;
+}
+
+.stream-info {
+  padding: 15px;
+}
+
+.stream-title {
+  margin: 0 0 8px 0;
+  font-size: 16px;
+  font-weight: 600;
+  color: #333;
+}
+
+.streamer-name {
+  margin: 0 0 8px 0;
+  font-size: 14px;
+  color: #666;
+}
+
+.stream-details {
+  margin: 0;
+  font-size: 12px;
+  color: #888;
+}
+  

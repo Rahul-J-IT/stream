@@ -1,0 +1,45 @@
+/* client/src/components/Chat/ChatBox.css */
+
+.chatbox-container {
+    margin-top: 20px;
+    border: 1px solid #ccc;
+    padding: 10px;
+    border-radius: 5px;
+  }
+  
+  .chatbox-messages {
+    height: 200px;
+    overflow-y: scroll;
+    border: 1px solid #ddd;
+    padding: 5px;
+    margin-bottom: 10px;
+    background-color: #f9f9f9;
+  }
+  
+  .chatbox-message {
+    margin-bottom: 5px;
+  }
+  
+  .chatbox-form {
+    display: flex;
+  }
+  
+  .chatbox-input {
+    flex: 1;
+    padding: 8px;
+    font-size: 14px;
+  }
+  
+  .chatbox-button {
+    padding: 8px 12px;
+    font-size: 14px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .chatbox-button:hover {
+    background-color: #218838;
+  }
+  

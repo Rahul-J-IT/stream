@@ -1,0 +1,40 @@
+/* client/src/components/Auth/Auth.css */
+
+.auth-container {
+    width: 300px;
+    margin: 50px auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+  }
+  
+  .auth-form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .auth-input, .auth-select {
+    margin-bottom: 15px;
+    padding: 10px;
+    font-size: 16px;
+  }
+  
+  .auth-button {
+    padding: 10px;
+    font-size: 16px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .auth-button:hover {
+    background-color: #0056b3;
+  }
+  
+  .auth-message {
+    color: red;
+    margin-bottom: 10px;
+  }
+  

@@ -1,0 +1,45 @@
+{
+  "users": [
+    {
+      "id": "1728823710094",
+      "username": "hello123",
+      "password": "$2b$10$.EQPk9heTsaoJmdsq29s9eQtbtqXEUBiXQi.isww0LVDNugud6bki",
+      "role": "streamer",
+      "streams": [
+        "1729326557043",
+        "1729328191566",
+        "1729329696603"
+      ]
+    },
+    {
+      "id": "1728823768269",
+      "username": "hi123",
+      "password": "$2b$10$jiougAYcEYMYbaSJXwY3x.uNOSV5i8bUdzJk5OLvOFYHPVjQtvO9K",
+      "role": "viewer",
+      "streams": []
+    },
+    {
+      "id": "1730614758877",
+      "username": "bye",
+      "password": "$2b$10$qStFkUSGTuRHbqkNW4ELvOqR1MejlMSFcjdWpfEXNQUo6BHPYF1aC",
+      "role": "streamer",
+      "streams": [
+        "1730614779531"
+      ]
+    },
+    {
+      "id": "1730641949705",
+      "username": "hy",
+      "password": "$2b$10$Nu9o32.kVMLNmZhvLSgY...2JYkLP/6Di4OwblPeBGT0jv0i2Nqn2",
+      "role": "streamer",
+      "streams": []
+    },
+    {
+      "id": "1730641987612",
+      "username": "hi",
+      "password": "$2b$10$wouYljnRj.y2x69GwjIRneKcF8eVrJPrcC3orvQ5uyoTAEDd.71ny",
+      "role": "viewer",
+      "streams": []
+    }
+  ]
+}
